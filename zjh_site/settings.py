@@ -25,7 +25,7 @@ with open("SECRET_KEY_FILE", 'r', encoding='utf-8') as f:
     SECRET_KEY = f.read()
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = bao_mi.DEBUG
 
 ALLOWED_HOSTS = ['*']
 
