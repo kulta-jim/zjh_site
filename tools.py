@@ -19,7 +19,7 @@ def get_pages(obj_list, page: int):
 
 
 def to_markdown(text):
-    md = markdown.markdown(text.replace("\r\n", '  \n'), extensions=[
+    md = markdown.markdown(text, extensions=[
         'markdown.extensions.extra',
         'markdown.extensions.codehilite',
         'markdown.extensions.toc'
@@ -67,4 +67,5 @@ def get_ip():
 if __name__ == '__main__':
     # replace_static_path('templates/base-index.html')
     print(get_ip())
+    print(type(get_ip()))
 
