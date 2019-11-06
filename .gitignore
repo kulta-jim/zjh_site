@@ -10,3 +10,6 @@
 /apps/my_accounts/migrations/
 /datadump.json
 /bao_mi.py
+/dingyue.py
+/templates/ssr.html
+/ssr_list
