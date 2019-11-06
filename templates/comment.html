@@ -1,0 +1,13 @@
+<ul style="list-style: none;padding: 20px 0">
+    {% for foo in article_comment_list %}
+        <li>
+            <div>
+                <a href="{% url 'profile' foo.author.id %}">
+                    <img src="{{ foo.user_img }}" alt="" width="25px" style="margin-right: 25px">
+                    <span>{{ foo.user_name }}</span>
+                </a>
+                <div style="padding: 0 0 25px 25px">{{ foo.context|safe }}</div>
+            </div>
+        </li>
+    {% endfor %}
+</ul>

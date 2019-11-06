@@ -1,0 +1,123 @@
+{% extends 'Base_hh.html' %}
+{% load static %}
+{% block head_title %}博客详情{% endblock %}
+{% block  head_link %}
+    <link rel="stylesheet" href="{% static 'css/code.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+    <style>
+        .CodeMirror, .CodeMirror-scroll {
+            min-height: 150px;
+        }
+    </style>
+{% endblock head_link %}
+{% block main_content %}
+    <!-- Blog Detail Start -->
+    <section class="blog-detail">
+        <div class="container">
+            <div class="blog-detail-banner wow fadeIn">
+                <img src="{% static 'picture/design-trust.jpg' %}" alt="Blog Desc">
+            </div>
+            <div class="blog-detail-contents wow fadeInUp">
+                <h2>{{ article.title }}</h2>
+                <div class="blog-detail-about clearfix">
+                    <div class="media float-left align-items-center">
+                        <div class="media-left mr-3">
+                            <img src="{{ article.author.user_img.url }}" class="media-object" alt="avatar">
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">{{ article.author }}</h4>
+                            <p>{{ article.create_time|date:'Y-m-d' }}</p>
+                        </div>
+                    </div>
+                    <div class="blog-detail-category float-right">
+                        <a href="{% url '[blog]:blog-category' article.category_id %}">{{ article.category }}</a>
+                    </div>
+                </div>
+                <div class="blog-detail-content">
+                    {% if article.summary %}
+                        <div>摘要：{{ article.summary|safe }}</div>
+                    {% endif %}
+                    {{ article.text|safe }}
+                </div>
+            </div>
+
+            <div class="blog-detail-comment">
+                <form class="comment-form" action="#">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label for="{{ form.content.id_for_label }}"><strong>评论：</strong></label>
+                            {{ form.content }}
+                            {{ form.content.errors }}
+                            <input type="hidden" name="author_id" value="{{ user.id }}">
+                            {% if user.is_authenticated %}
+                                <a href="javascript:commentPost()" class="comment-btn">发表</a>
+                            {% else %}
+                                <a href="">登录发表评论</a>
+                            {% endif %}
+                        </div>
+                    </div>    <!-- row -->
+                </form>
+                <div id="aaaaaaaaaaa">
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Blog Detail End -->
+
+{% endblock main_content %}
+
+
+{% block script %}
+    <script src="{% static 'aaa/simplemde.min.js' %}"></script>
+    <script>
+        var simplemde = new SimpleMDE(); // 会寻找当前页面第一个textarea进行渲染
+    </script>
+    <script>
+        $('.fa.fa-arrows-alt.no-disable.no-mobile, .fa.fa-columns.no-disable.no-mobile').click(function () {
+            $('#navbar-custom').css('position', 'unset');
+        });
+
+        $('.fa.fa-arrows-alt.no-disable.no-mobile.active, .fa.fa-columns.no-disable.no-mobile.active').click(function () {
+            $('#navbar-custom').css('position', 'fixed');
+        });
+        $(document).ready(function () {
+            $.ajax({
+                url: "{% url '[comment]:blog-comment' article.id %}",//url
+                datatype: "json",
+                type: 'get',
+                success: function (result) {
+                    $("#aaaaaaaaaaa").empty().append(function () {
+                        return result.data
+                    })
+                }
+            })
+        });
+
+        function commentPost() {
+            $('#id_content').removeAttr('required');
+            $.ajax({
+                //几个参数需要注意一下
+                type: "POST",//方法类型
+                dataType: "json",//预期服务器返回的数据类型
+                url: "{% url '[comment]:blog-comment' article.id %}",//url
+                data: {'content': simplemde.value()},
+                success: function (result) {
+                    if (result.status === 'ok') {
+                        {#console.log(result.data);#}
+                        simplemde.value('');
+                        $("#aaaaaaaaaaa").empty().append(function () {
+                            return result.data.toString();
+                        });
+                    } else {
+                        alert(result.message)
+                    }
+                },
+                error: function () {
+                    alert("异常！");
+                }
+            })
+        }
+    </script>
+{% endblock %}

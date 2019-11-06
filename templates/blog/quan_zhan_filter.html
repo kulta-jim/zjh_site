@@ -1,0 +1,40 @@
+{% extends 'Base_hh.html' %}
+{% load bolg_tags %}
+{% block head_title %}分类-标签{% endblock %}
+{% block main_content %}
+    <section>
+        <div class="margin-100-20_">
+            <h3 class="text-center">博客分类</h3>
+            <ul class="margin-40">
+                {% for base_category in category_list %}
+                    <li>
+                        <a href="{% url '[blog]:blog-base-category' base_category.id %}">{{ base_category.name }}</a>
+                        <span>（{{ base_category.get_article_number }}）</span>
+                        <ul>
+                            {% for category in base_category.get_child_category %}
+                                <li>
+                                    <a href="{% url '[blog]:blog-category' category.id %}">{{ category.name }}</a>
+                                    <span>（{{ category.get_article_number }}）</span>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="margin-100-20_">
+            <h3 class="text-center">博客标签</h3>
+            <ul class="margin-40 no-list-style ">
+                {% for tag in tags %}
+                    <li  class="d-inline-block" >
+                        <span class="btn btn-light rounded-pill tags-items">
+                            <a href="{% url '[blog]:blog-tag' tag.id %}">{{ tag.name }}</a>
+                        </span>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+
+    </section>
+{% endblock main_content %}

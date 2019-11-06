@@ -1,0 +1,89 @@
+{% extends 'Base_hh.html' %}
+{% load static %}
+{% block head_title %}首页{% endblock head_title %}
+{% block home_style %}id="home" class="module-image js-height-full"{% endblock home_style %}
+{% block home_picture %}
+    <div class="intro">
+        <h1>静心 & 个人博客</h1>
+    </div>
+    <div class="mouse-icon">
+        <div class="wheel"></div>
+    </div>
+{% endblock home_picture %}
+
+{% block main_content %}
+    <!-- Blog start -->
+    <section id="blog" class="module blog">
+        <div class="container">
+            <div class="module-header wow fadeInUp">
+                <h2 class="module-title">博客</h2>
+                <div class="module-line"></div>
+            </div>
+            {% for row in rows %}
+                <div class="row">
+                    {% for article in row %}
+                        <div class="col-md-4">
+                            <a href="{% url '[blog]:blog-detail' article.id %}" class="blogList wow fadeInUp">
+                                <div class="blogList-img">
+                                    <img src="
+                                            {% if article.img %}{{ article.img.url }}{% else %}{% static 'picture/blog2.jpg' %}{% endif %}"
+                                         alt="Blog Desc">
+                                    <span>{% if article.is_original %}原创{% else %}转载{% endif %}</span>
+                                    <div class="h5">{{ article.title }}</div>
+                                </div>
+                                <div class="blogList-desc">
+                                    <div>{{ article.summary|safe|truncatechars:45|add:'……' }}</div>
+                                </div>
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div><!-- .row -->
+            {% endfor %}
+            <div class="col-md-12"><a class="blog-viewMore" href="{% url '[blog]:blog-list' %}">更多</a></div>
+        </div>
+        <!-- .container -->
+    </section>
+    <!-- Blog end -->
+
+    <!-- Contact start -->
+    <section id="contact" class="module">
+        <div class="container">
+            <div class="module-header wow fadeInUp">
+                <h2 class="module-title">留言</h2>
+                <div class="module-line"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <form id="contact-form" action="{% url '[comment]:leave-word' %}" method="post">
+                        {% csrf_token %}
+                        <div class="ajax-hidden">
+                            <div class="form-group wow fadeInUp">
+                                <label class="sr-only" for="c_name">姓名</label><input
+                                    type="text" id="c_name" class="form-control" name="c_name" placeholder="您的称呼"
+                                    required>
+                            </div>
+                            <div class="form-group wow fadeInUp" data-wow-delay=".1s">
+                                <label class="sr-only" for="c_email">Email 地址</label>
+                                <input type="email" id="c_email" class="form-control" name="c_email" placeholder="邮箱"
+                                       required>
+                            </div>
+                            <div class="form-group wow fadeInUp" data-wow-delay=".2s">
+                                <label for="c_message"></label>
+                                <textarea class="form-control" id="c_message" name="c_message" rows="7"
+                                          placeholder="您的留言" required></textarea>
+                            </div>
+                            <input type="hidden" name="next_url" value="{{ request.get_full_path }}">
+                            <button type="submit" class="btn btn-block btn-custom-2 wow fadeInUp" data-wow-delay=".3s">
+                                发送
+                            </button>
+                        </div>
+                        <div class="ajax-response"></div>
+                    </form>
+                </div>
+            </div>
+            <!-- .row -->
+        </div>
+        <!-- .container -->
+    </section>
+    <!-- Contact end -->
+{% endblock main_content %}

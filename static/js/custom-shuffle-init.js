@@ -1,0 +1,1 @@
+var ImageDemo=(function(a,d){var c=a(".list-items-container"),b=c.find("img"),e,f=function(){e=new d(b.get());e.on("always",g)},g=function(h){c.addClass("images-loaded");c.shuffle({itemSelector:".list-item",delimeter:" "})};return{init:f}}(jQuery,window.imagesLoaded));$(document).ready(function(){ImageDemo.init()});

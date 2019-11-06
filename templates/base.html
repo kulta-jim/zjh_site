@@ -1,0 +1,44 @@
+{% extends 'Base_hh.html' %}
+{% load i18n %}
+
+{% block head_title %}base.html{% endblock %}
+
+{% block extra_head %}
+{% endblock %}
+
+
+{% block main_content %}
+    <section id="blog" class="module blog">
+        <div class="container">
+            {% if messages %}
+                <div>
+                    <ul>
+                        {% for message in messages %}
+                            <li>
+                                <div class="alert alert-primary" role="alert">{{ message }}</div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+            <div>
+                <strong>菜单</strong>
+                <ul>
+                    {% if user.is_authenticated %}
+                        <li><a href="{% url 'account_email' %}">更换邮箱</a></li>
+                        <li><a href="{% url 'account_logout' %}">注销</a></li>
+                    {% else %}
+                        <li><a href="{% url 'account_login' %}">登录</a></li>
+                        <li><a href="{% url 'account_signup' %}">注册</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+
+            {% block content %}
+            {% endblock %}
+        </div>
+    </section>
+{% endblock %}
+{% block extra_body %}
+{% endblock %}
+

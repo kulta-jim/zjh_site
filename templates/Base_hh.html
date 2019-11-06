@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>静心 | {% block head_title %}{% endblock head_title %}</title>
+
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}"/>
+    <link rel="bookmark" href="{% static 'favicon.ico' %}"/>
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="{% static 'css/all.css' %}" media="screen">
+    <!--[if lte IE 7]>
+    <script src="{% static 'js/icons-lte-ie7.js' %}"></script>
+<![endif]-->
+    <!-- Magnific-popup lightbox -->
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+    <!-- Owl Carousel -->
+    <link rel="stylesheet" href="{% static 'css/owl.theme.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}">
+    <!-- Animate css -->
+    <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+    <!-- Custom styles CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" media="screen">
+    <!-- other head link -->
+    {% block head_link %}{% endblock head_link %}
+</head>
+
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
+<!-- Preloader -->
+{#<div id="loading">#}
+{#    <div id="loading-center">#}
+{#        <div id="loading-center-absolute">#}
+{#            <div class="box">#}
+{#                <div class="blobs">#}
+{#                    <div class="blob"></div>#}
+{#                    <div class="blob"></div>#}
+{#                </div>#}
+{#                <svg xmlns="http://www.w3.org/2000/svg" version="1.1">#}
+{#                    <defs>#}
+{#                        <filter id="goo">#}
+{#                            <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"></feGaussianBlur>#}
+{#                            <feColorMatrix in="blur" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7"#}
+{#                                           result="goo"></feColorMatrix>#}
+{#                            <feBlend in="SourceGraphic" in2="goo"></feBlend>#}
+{#                        </filter>#}
+{#                    </defs>#}
+{#                </svg>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#</div>#}
+<!-- Home start -->
+
+<section {% block home_style %}{% endblock home_style %}>
+    <!-- Navigation start -->
+    <header class="header" id="navbar-custom">
+        <nav class="navbar navbar-expand-lg navbar-custom navbar-light ">
+            <div class="container"><a class="navbar-brand  mr-auto " href="{% url '[blog]:index' %}#home">静心</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler"
+                        aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation"><span
+                        class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarToggler">
+                    <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                        <li><a class="nav-link" href="{% url '[blog]:index' %}#home">首页</a></li>
+                        {#                        <li><a class="nav-link" href="{% url '[blog]:index' %}#about">关于</a></li>#}
+                        <li><a class="nav-link" href="{% url '[blog]:index' %}#blog">博客</a></li>
+                        <li><a class="nav-link" href="{% url '[blog]:index' %}#contact">留言</a></li>
+                        <li><a class="nav-link" href="{% url '[blog]:filter' %}">筛选</a></li>
+                        <li>
+                            {% if user.is_authenticated %}
+                                <a class="nav-link" href={% url 'profile' user.id %}>用户中心</a>
+{#                                <a class="nav-link" href={% url 'account_logout' %}>注销</a>#}
+                            {% else %}
+                                <a class="nav-link" href="{% url 'account_login' %}">登录</a>
+                            {% endif %}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- Navigation end -->
+    {% block home_picture %}
+    {% endblock home_picture %}
+
+</section>
+<!-- Home end -->
+
+{% block main_content %}
+
+{% endblock main_content %}
+
+<!-- Footer start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <a href="{% url '[blog]:index' %}#home" class="footer-logo">静心</a>
+                <ul class="social-links">
+                    <li><a href="#" class="wow fadeInUp" data-wow-delay=".1s">QQ</a></li>
+                    <li><a href="#" class="wow fadeInUp" data-wow-delay=".1s">微信</a></li>
+                    <li><a href="https://github.com/zhangjinhua0308" class="wow fadeInUp"
+                           data-wow-delay=".1s">GitHub</a></li>
+                    {#                    <li><a href="https://www.facebook.com/Terho.Korpela.666" class="wow fadeInUp" data-wow-delay=".1s">Facebook</a></li>#}
+                    {#                    <li><a href="https://twitter.com/tY6xszE3yFRITuZ" class="wow fadeInUp" data-wow-delay=".1s">Twitter</a></li>#}
+                </ul>
+                <p class="copyright wow fadeInUp"> © 2019 beingeorge, All Rights Reserved.</p>
+            </div>
+        </div>
+        <!-- .row -->
+    </div>
+    <!-- .container -->
+</footer>
+<!-- Footer end -->
+
+<!-- Scroll-up -->
+<div class="scroll-up"><a href="{% url '[blog]:index' %}#home" id="scroll-up"><i class="fas fa-arrow-up"></i></a></div>
+
+<!-- Javascript files -->
+
+<!-- jQuery library -->
+<script src="{% static 'js/jquery.js' %}"></script>
+<!-- Popper JS -->
+<script src="{% static 'js/popper.js' %}"></script>
+<!-- Latest compiled JavaScript -->
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+<script src="{% static 'js/jquery.parallax-1.1.3.js' %}"></script>
+<script src="{% static 'js/imagesloaded.pkgd.js' %}"></script>
+<script src="{% static 'js/jquery.shuffle.min.js' %}"></script>
+<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'js/jquery.fitvids.js' %}"></script>
+<script src="{% static 'js/jquery.sticky.js' %}"></script>
+<script src="{% static 'js/wow.min.js' %}"></script>
+<!-- Custom scripts -->
+<script src="{% static 'js/custom.js' %}"></script>
+<script src="{% static 'js/custom-shuffle-init.js' %}"></script>
+
+{% block script %}
+{% endblock script %}
+</body>
+
+</html>

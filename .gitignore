@@ -5,3 +5,6 @@
 /templates/test.html
 /apps/spider/
 /.idea/
+/apps/blog/migrations/
+/apps/comment/migrations/
+/apps/my_accounts/migrations/

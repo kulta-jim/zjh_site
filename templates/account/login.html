@@ -1,0 +1,71 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+{% load account socialaccount %}
+
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+{% block content %}
+
+    <h2 class="text-center">{% trans "Sign In" %}</h2>
+
+    {% get_providers as socialaccount_providers %}
+    <div class="col-sm-3"></div>
+    <div class="account-form col-sm-6">
+        {% if socialaccount_providers %}
+            <p>
+                {% blocktrans with site.name as site_name %}使用第三方账号登录：{% endblocktrans %}
+            </p>
+            <div class="socialaccount_ballot">
+                <ul class="socialaccount_providers">
+                    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+                </ul>
+            </div>
+            {% include "socialaccount/snippets/login_extra.html" %}
+
+        {% endif %}
+
+        <form class="login" method="POST" action="{% url 'account_login' %}">
+            {% csrf_token %}
+
+            {#            <div class="form-group row">#}
+            {#                <label for="staticEmail" class="col-sm-2 col-form-label">账号:</label>#}
+            {#                <div class="col-sm-10">#}
+            {#                    <input type="text" readonly class="form-control-plaintext" id="staticEmail"#}
+            {#                           value="email@example.com">#}
+            {#                </div>#}
+            {#            </div>#}
+
+            <div class="form-group row">
+                <label for="id_login" class="col-sm-2 col-form-label">账号:</label>
+                <div class="col-sm-10">
+                    <input type="text" name="login" placeholder="用户名或e-mail" autofocus="autofocus" required=""
+                           id="id_login" class="form-control">
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <label for="id_password" class="col-sm-2 col-form-label">密码:</label>
+                <div class="col-sm-10">
+                    <input type="password" name="password" placeholder="密码" required="" id="id_password"
+                           class="form-control">
+                </div>
+            </div>
+
+
+            <label for="id_remember">记住我:</label>
+            <input type="checkbox" name="remember" id="id_remember">
+            <div></div>
+
+            <button class="btn btn-primary" type="submit">{% trans "Sign In" %}</button>
+            <a class="button secondaryAction"
+               href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+            <a href="{{ signup_url }}">注册</a>
+
+        </form>
+
+
+    </div>
+    <div class="col-sm-3"></div>
+{% endblock %}
