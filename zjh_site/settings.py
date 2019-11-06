@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import bao_mi
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -92,16 +93,8 @@ WSGI_APPLICATION = 'zjh_site.wsgi.application'
 #     }
 # }
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',   #  指定数据库驱动
-        'NAME': 'test',   #  指定的数据库名
-        'USER': 'root',   #  数据库登录的用户名
-        'PASSWORD': '4K@p#P*B9E&8Ee',  #  登录数据库的密码
-        'HOST': '118.31.5.44',
-        'PORT': '3306',   #  数据库服务器端口，mysql默认为3306
-    }
+    'default': bao_mi.mysql_info
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -113,7 +106,7 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
         'OPTIONS': {
-            'min_length': 6,
+            'min_length': 6,  # 密码长度最小为6
         }
     },
     # {
@@ -191,14 +184,15 @@ SITE_ID = 2
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_EMAIL_REQUIRED = True
 LOGIN_REDIRECT_URL = '/'
+
 # 邮箱设置
 EMAIL_HOST = 'smtp.qq.com'
 EMAIL_PORT = 25
-EMAIL_HOST_USER = '1761726189@qq.com'  # 你的 QQ 账号
-EMAIL_HOST_PASSWORD = 'jxfvgdpudprnhdhg'  # 授权码
+EMAIL_HOST_USER = bao_mi.EMAIL_HOST_USER  # 你的 QQ 账号
+EMAIL_HOST_PASSWORD = bao_mi.EMAIL_HOST_PASSWORD  # 授权码
 EMAIL_USE_TLS = True  # 这里必须是 True，否则发送不成功
-EMAIL_FROM = '1761726189@qq.com'  # 你的 QQ 账号
-DEFAULT_FROM_EMAIL = '1761726189@qq.com'
+EMAIL_FROM = bao_mi.EMAIL_FROM  # 你的 QQ 账号
+DEFAULT_FROM_EMAIL = bao_mi.DEFAULT_FROM_EMAIL
 
 AUTHENTICATION_BACKENDS = (
     # Needed to login by username in Django admin, regardless of `allauth`
