@@ -85,22 +85,23 @@ WSGI_APPLICATION = 'zjh_site.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'mydatabase',
-    }
-}
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.mysql',  # 指定数据库驱动
-#         'NAME': 'zjh_site',  # 指定的数据库名
-#         'USER': 'root',  # 数据库登录的用户名
-#         'PASSWORD': '1qaz2wsx',  # 登录数据库的密码
-#         'HOST': '196.168.166.122',
-#         'PORT': '3306',  # 数据库服务器端口，mysql默认为3306
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': 'mydatabase',
 #     }
 # }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',   #  指定数据库驱动
+        'NAME': 'test',   #  指定的数据库名
+        'USER': 'root',   #  数据库登录的用户名
+        'PASSWORD': '4K@p#P*B9E&8Ee',  #  登录数据库的密码
+        'HOST': '118.31.5.44',
+        'PORT': '3306',   #  数据库服务器端口，mysql默认为3306
+    }
+}
+
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators

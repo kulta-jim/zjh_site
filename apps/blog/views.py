@@ -77,7 +77,7 @@ class TagView(View):
 
 class FilterView(View):
     def get(self, request):
-        print(type(BaseCategory.objects.all()))
+        # print(type(BaseCategory.objects.all()))
         context = {
             'category_list': BaseCategory.objects.all(),
             'tags': Tag.objects.filter()
