@@ -81,8 +81,3 @@ def base64_to_str(base64_text: str):
 if __name__ == '__main__':
     # replace_static_path('templates/base-index.html')
     print(get_ip())
-    # print(type(get_ip()))
-    # print(str_to_base64(
-    #     'ssr://czE5Lndld2FsbC50b3A6ODA6YXV0aF9jaGFpbl9hOm5vbmU6cGxhaW46YzNWd1pYSnpjM0l1YldVLz9vYmZzcGFyYW09TmpnME1HWXhNekF3TkRJdVpXUjFMbU51JnByb3RvcGFyYW09TVRNd01EUXlPazB6U2sxNmJBJnJlbWFya3M9VTBjZ2ZGWTNmRkl3TGprNGZERTUmZ3JvdXA9Ym1WM0xuTnpjbU5tTG5SdmNB'))
-#     print(base64_to_str('c3NyOi8vY3pFNUxuZGxkMkZzYkM1MGIzQTZPREE2WVhWMGFGOWphR0ZwYmw5aE9tNXZibVU2Y0d4aGFXNDZZek5XZDFwWVNucGpNMGwxWWxkVkx6OXZZbVp6Y0dGeVlXMDlUbXBuTUUxSFdYaE5la0YzVGtSSmRWcFhVakZNYlU1MUpuQnliM1J2Y0dGeVlXMDlUVlJOZDAxRVVYbFBhekI2VTJzeE5tSkJKbkpsYldGeWEzTTlWVEJqWjJaR1dUTm1Sa2wzVEdwck5HWkVSVFVtWjNKdmRYQTlZbTFXTTB4dVRucGpiVTV0VEc1U2RtTkI='
-# ))
