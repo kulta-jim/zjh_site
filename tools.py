@@ -19,7 +19,7 @@ def get_pages(obj_list, page: int):
 
 
 def to_markdown(text):
-    md = markdown.markdown(text.replace("\r\n", '  \n'), extensions=[
+    md = markdown.markdown(text, extensions=[
         'markdown.extensions.extra',
         'markdown.extensions.codehilite',
         'markdown.extensions.toc'
