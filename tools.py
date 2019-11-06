@@ -67,4 +67,5 @@ def get_ip():
 if __name__ == '__main__':
     # replace_static_path('templates/base-index.html')
     print(get_ip())
+    print(type(get_ip()))
 
