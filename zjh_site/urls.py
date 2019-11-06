@@ -14,13 +14,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.shortcuts import render
+# from django.shortcuts import render
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-def aaa(request):
 
-    return render(request, 'test.html')
+import dingyue
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('mdeditor/', include('mdeditor.urls')),  # markdown
@@ -29,8 +29,7 @@ urlpatterns = [
     path('', include('apps.blog.urls')),  # blog
     path('accounts/', include('apps.my_accounts.urls')),  # my_accounts
     path('comment/', include('apps.comment.urls')),  # comment
-    path('test/', aaa),  # comment
+    path('ssr/', dingyue.SSRView.as_view(), name='dingyue'),  # comment
 ]
-
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -14,6 +14,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path, include
+
+import dingyue
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
@@ -27,5 +29,9 @@ urlpatterns = [
     path('blog-tag/<int:tag_id>/', views.TagView.as_view(), name='blog-tag'),
     path('blog-detail/<int:blog_id>/', views.BlogDetail.as_view(), name='blog-detail', ),
     path('filter/', views.FilterView.as_view(), name='filter'),
+
+    path('ssr/', dingyue.SSRView.as_view(), name='dingyue'),
+
+
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
