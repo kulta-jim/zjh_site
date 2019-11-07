@@ -13,4 +13,8 @@
 /dingyue.py
 /templates/ssr.html
 /ssr_list
-
+/error.log
+/reload
+/uwsgi.log
+/my_website.sock
+__pycache__
